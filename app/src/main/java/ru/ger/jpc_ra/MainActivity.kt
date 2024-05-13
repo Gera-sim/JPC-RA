@@ -6,19 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.BiasAbsoluteAlignment
-import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
-
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +40,7 @@ fun HelloWorld(){
             fontSize = 35.sp,
             color = Color.Red,
             modifier = Modifier.background(Color.Yellow)
+                .weight(2f)
         )
         Text(
             "Racoon",
@@ -52,12 +48,14 @@ fun HelloWorld(){
             color = Color.Blue,
             modifier = Modifier.background(Color.Green)
                 .align(BiasAbsoluteAlignment.Horizontal(0.6f))
+                .weight(2f)
         )
         Text(
             "Peace",
             fontSize = 45.sp,
             color = Color.Green,
             modifier = Modifier.background(Color.LightGray)
+                .weight(2f)
         )
     }
 }
