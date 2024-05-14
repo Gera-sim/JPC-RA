@@ -12,6 +12,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
@@ -34,20 +36,24 @@ class MainActivity : ComponentActivity() {
 )
 @Composable
 fun StatefulCounter(){
+    val counterMutableState = remember {
+        mutableStateOf(0)
+    }
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize(),
     ) {
         Text(
-            text = "0",
+            text = counterMutableState.value.toString(),
             fontSize = 60.sp,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily.Monospace,
         )
         Spacer(modifier = Modifier.height(12.dp))
-        Button(onClick = { 
-        /*TODO*/
+        Button(
+            onClick = {
+                counterMutableState.value++
         }
         ) {
             Text(text = "Increment", fontSize = 18.sp)
