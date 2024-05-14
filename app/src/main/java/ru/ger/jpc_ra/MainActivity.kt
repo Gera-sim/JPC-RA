@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlin.random.Random
 
 data class CounterState(
     val number: Int = 0
@@ -40,7 +41,12 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun StatefulCounter(){
     val counterMutableState = remember {
-        mutableStateOf(CounterState())
+
+        /** remember - функция создается один раз при первом вызове
+        далее при пересоздании обновляется только результат изменений.
+        для проверки работы тут можно её удалить */
+
+        mutableStateOf(CounterState(Random.nextInt(1000)))
     }
     Column(
         verticalArrangement = Arrangement.Center,
