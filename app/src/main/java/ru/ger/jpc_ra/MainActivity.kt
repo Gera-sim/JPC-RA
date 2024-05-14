@@ -63,8 +63,7 @@ fun StatefulCounter(){
         Button(
             onClick = {
                 val state:CounterState = counterMutableState.value
-                val newState = state
-                counterMutableState.value = state.copy(
+                val newState = state.copy(
                     number = state.number + 1
                 )
                 counterMutableState.value = newState
