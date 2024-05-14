@@ -3,16 +3,19 @@ package ru.ger.jpc_ra
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.height
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
+
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.BiasAbsoluteAlignment
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -22,7 +25,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
     /**AndroidComposableView*/
         setContent {
-        HelloWorld()
+        StatefulCounter()
         }
     }
 }
@@ -30,39 +33,24 @@ class MainActivity : ComponentActivity() {
     showSystemUi = true
 )
 @Composable
-fun HelloWorld(){
+fun StatefulCounter(){
     Column(
-       // verticalAlignment = Alignment.CenterVertically,
-        horizontalAlignment = BiasAbsoluteAlignment.Horizontal(-0.3f),
-        verticalArrangement = Arrangement.SpaceAround,
-        modifier = Modifier
-            .background(Color.Cyan)
-            .fillMaxSize()
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize(),
     ) {
         Text(
-            "Hello World",
-            fontSize = 35.sp,
-            color = Color.Red,
-            modifier = Modifier.background(Color.Yellow)
-                .weight(2f)
+            text = "0",
+            fontSize = 60.sp,
+            fontWeight = FontWeight.Bold,
+            fontFamily = FontFamily.Monospace,
         )
-        Text(
-            "Racoon",
-            fontSize = 20.sp,
-            color = Color.Blue,
-            modifier = Modifier
-                .background(Color.Blue)
-                .padding(10.dp)
-                .background(Color.Green)
-                .align(BiasAbsoluteAlignment.Horizontal(0.6f))
-                .weight(2f)
-        )
-        Text(
-            "Peace",
-            fontSize = 45.sp,
-            color = Color.Green,
-            modifier = Modifier.background(Color.LightGray)
-                .weight(2f)
-        )
+        Spacer(modifier = Modifier.height(12.dp))
+        Button(onClick = { 
+        /*TODO*/
+        }
+        ) {
+            Text(text = "Increment", fontSize = 18.sp)
+        }
     }
 }
