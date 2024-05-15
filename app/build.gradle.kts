@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-}
+    }
 
 android {
     namespace = "ru.ger.jpc_ra"
