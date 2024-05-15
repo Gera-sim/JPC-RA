@@ -1,6 +1,7 @@
 package ru.ger.jpc_ra
 
 import android.os.Bundle
+import android.os.Parcelable
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
@@ -22,12 +23,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import java.io.Serializable
+import kotlinx.parcelize.Parcelize
+
 import kotlin.random.Random
 
+@Parcelize
 data class CounterState(
     val number: Int = 0
-) : Serializable
+) : Parcelable
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
