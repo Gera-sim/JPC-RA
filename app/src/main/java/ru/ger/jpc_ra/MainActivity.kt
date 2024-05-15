@@ -29,18 +29,20 @@ data class CounterState(
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    /**AndroidComposableView*/
+        /**AndroidComposableView*/
         setContent {
-        StatefulCounter()
+            StatefulCounter()
         }
     }
 }
+
 @Preview(
     showSystemUi = true
 )
 @Composable
-fun StatefulCounter(){
-    val counterMutableState = remember {
+fun StatefulCounter() {
+    // Kotlin Destruction
+    val (value, setValue) = remember {
 
         /** remember - функция создается один раз при первом вызове
         далее при пересоздании обновляется только результат изменений.
@@ -54,20 +56,19 @@ fun StatefulCounter(){
         modifier = Modifier.fillMaxSize(),
     ) {
         Text(
-            text = counterMutableState.value.number.toString(),
+            text = value.number.toString(),
             fontSize = 60.sp,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily.Monospace,
         )
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(40.dp))
         Button(
             onClick = {
-                val state:CounterState = counterMutableState.value
-                val newState = state.copy(
-                    number = state.number + 1
+                val newState = value.copy(
+                    number = value.number + 1
                 )
-                counterMutableState.value = newState
-        }
+                setValue(newState)
+            }
         ) {
             Text(text = "Increment", fontSize = 18.sp)
         }
