@@ -35,7 +35,20 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            StatefulCounter()
+            var counterState by rememberSaveable {
+                mutableStateOf(
+                    CounterState(Random.nextInt(1000))
+                )
+            }
+            StatelessCounter(
+                counterValue = counterState.number,
+                onIncrement = {alreadyIncrementedvalue ->
+                    // old number = counterState.number
+                    counterState = counterState.copy(
+                        number = alreadyIncrementedvalue
+                    )
+                }
+            )
         }
     }
 }
@@ -44,32 +57,27 @@ class MainActivity : ComponentActivity() {
     showSystemUi = true
 )
 @Composable
-fun StatefulCounter() {
+fun StatelessCounter(
+    counterValue: Int = 0,
+    onIncrement: (incrementedvalue: Int) -> Unit = {},
+) { //Stateful - функция с компонентами внутри & StateLess (без компонентов) Hoisting
 
-    var counterState by rememberSaveable {
-
-        mutableStateOf(
-            CounterState(Random.nextInt(1000))
-        )
-    }
+    /*var counterState by rememberSaveable {
+        mutableStateOf(CounterState(Random.nextInt(1000)))}*/
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize(),
     ) {
         Text(
-            text = counterState.number.toString(),
+            text = counterValue.toString(),
             fontSize = 60.sp,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily.Monospace,
         )
         Spacer(modifier = Modifier.height(40.dp))
         Button(
-            onClick = {
-                counterState = counterState.copy(
-                    number = counterState.number + 1
-                )
-            }
+            onClick = {onIncrement(counterValue + 1)}
         ) {
             Text(text = "Increment", fontSize = 18.sp)
         }
