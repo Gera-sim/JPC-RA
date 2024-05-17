@@ -61,10 +61,8 @@ class MainActivity : ComponentActivity() {
 fun StatelessCounter(
     counterValue: Int = 0,
     onIncrement: (incrementedvalue: Int) -> Unit = {},
-) { //Stateful - функция с компонентами внутри & StateLess (без компонентов) Hoisting
-
-    /*var counterState by rememberSaveable {
-        mutableStateOf(CounterState(Random.nextInt(1000)))}*/
+) {
+    logCompositionLifecycle(name = "StatelessCounter")
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -85,6 +83,7 @@ fun StatelessCounter(
         Spacer(modifier = Modifier.height(40.dp))
         Box(modifier = Modifier.height(100.dp)){
             if (counterValue % 2 == 0) {
+                logCompositionLifecycle(name = "IsEvenText")
                 Text(text = "Is Even = true",
                     fontSize = 25.sp)
             }
