@@ -1,3 +1,4 @@
+/*
 package ru.ger.jpc_ra
 
 import android.util.Log
@@ -24,4 +25,4 @@ private class LifecycleRememberObserver(
     }
 
     override fun onAbandoned() = Unit
-}
+}*/

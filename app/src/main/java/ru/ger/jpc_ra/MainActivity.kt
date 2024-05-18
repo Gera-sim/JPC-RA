@@ -1,3 +1,4 @@
+/*
 package ru.ger.jpc_ra
 
 import android.os.Bundle
@@ -89,4 +90,4 @@ fun StatelessCounter(
             }
         }
     }
-}
+}*/
