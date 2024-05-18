@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -33,20 +34,20 @@ class SimpleActivity : ComponentActivity() {
 @Preview
 @Composable
 fun SimpleAppScreen() {
-    var textValue: String by remember {
-        mutableStateOf("")
+    var state: Boolean by remember {
+        mutableStateOf(false)
     }
 
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
-        // TextField
-        OutlinedTextField(
-            value = textValue,
-            onValueChange = { newTextValue ->
-                textValue = newTextValue
-            }
+        Checkbox(
+            checked = state,
+            // callback:
+            onCheckedChange = { newCheckState ->
+                state = newCheckState
+        }
         )
     }
 }
