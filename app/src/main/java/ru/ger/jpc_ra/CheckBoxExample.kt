@@ -38,7 +38,7 @@ data class CheckBoxesState(
         val Saver: Saver<CheckBoxesState, *> = Saver(
             save = { state: CheckBoxesState ->
                 ParcelableCheckBoxesState(
-                    checkedItms = state.checkableItems.map {
+                    checkedItems = state.checkableItems.map {
                         ParcelableCheckableItem(
                             it.title,
                             it.isChecked.value
@@ -51,7 +51,7 @@ data class CheckBoxesState(
                     checkableItems = state.checkedItems.map {
                         CheckableItem(
                             it.title,
-                            mutableStateOf(it.isCecked)
+                            mutableStateOf(it.isChecked)
                         )
                     }
                 )
@@ -60,10 +60,15 @@ data class CheckBoxesState(
     }
 
 }
+@Parcelize
+data class ParcelableCheckableItem(
+    val title: String,
+    val isChecked: Boolean,
+): Parcelable
 
 @Parcelize
 data class ParcelableCheckBoxesState(
-    val checkedItms: List<ParcelableCheckableItem>
+    val checkedItems: List<ParcelableCheckableItem>
 ) : Parcelable
 
 @Composable
@@ -91,6 +96,7 @@ fun CheckBoxExample() {
                         val newCheckValue = !checkedItem.isChecked.value
                         checkedItem.isChecked.value
                     },
+                    // interactionSource
                     interactionSource = MutableInteractionSource(),
                     indication = rememberRipple(),
                 )
@@ -107,5 +113,3 @@ fun CheckBoxExample() {
     }
     Text("Selected Items: ${state.selectedItemNames}")
 }
-
-
